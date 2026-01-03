@@ -1,0 +1,311 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+:root {
+    --border-color: #000;
+    /* Vivid Blood Red */
+    --text-color: #000;
+    --bg-color: #fff;
+    --line-color: #000;
+    --accent-red: #cc0000;
+    --font-main: 'Roboto', sans-serif;
+}
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--bg-color);
+    margin: 0;
+    padding: 60px 20px 20px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+/* Back Button Styling */
+.back-button-container {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+    animation: slideInLeft 0.6s ease-out;
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.back-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 18px;
+    background: var(--bg-color);
+    color: var(--text-color);
+    border: 2px solid var(--border-color);
+    border-radius: 50px;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.back-button:hover {
+    background: var(--border-color);
+    color: var(--bg-color);
+    transform: translateX(-5px) scale(1.05);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    border-color: var(--accent-red);
+}
+
+.back-button:active {
+    transform: translateX(-3px) scale(1.02);
+}
+
+.back-arrow {
+    font-size: 1rem;
+    font-weight: bold;
+    transition: transform 0.3s ease;
+}
+
+.back-button:hover .back-arrow {
+    transform: translateX(-5px);
+    color: var(--accent-red);
+}
+
+.tournament-container {
+    width: 100%;
+    max-width: 1400px;
+}
+
+h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    font-weight: 400;
+    /* Thin look */
+    letter-spacing: 2px;
+}
+
+.bracket-wrapper {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr 1fr 0.8fr 1fr;
+    gap: 50px;
+    align-items: stretch;
+    /* Stretch to align titles at top */
+    /* Generally center vertically */
+}
+
+.round {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 100%;
+    /* Fill the grid height to space matches evenly */
+    position: relative;
+    min-height: 400px;
+    /* Reduced min-height slightly */
+    padding-top: 40px;
+}
+
+/* Titles */
+/* Titles */
+.round-title {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+/* Match container */
+.match {
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0;
+    position: relative;
+}
+
+/* Inputs styling */
+input {
+    border: none;
+    background: transparent;
+    font-family: inherit;
+    width: 100%;
+}
+
+input:focus {
+    outline: 2px solid var(--border-color);
+    background: #fff5f5;
+}
+
+.time-input {
+    font-size: 0.8rem;
+    color: #cc0000;
+    text-align: center;
+    /* Default center, override manually if needed */
+    margin-bottom: 2px;
+    text-transform: uppercase;
+}
+
+/* Team Box Styling */
+.team {
+    border: 1px solid var(--border-color);
+    padding: 4px 8px;
+    display: flex;
+    align-items: center;
+    background: #fff;
+    z-index: 10;
+    height: 32px;
+}
+
+.team.top {
+    border-bottom: none;
+    /* Merge look */
+}
+
+.team .seed {
+    display: block;
+    width: 30px;
+    font-size: 0.8em;
+    color: #000;
+    margin-right: 5px;
+    text-align: center;
+}
+
+.flag {
+    display: none;
+}
+
+.team-name {
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.9em;
+}
+
+/* Alignment Specifics based on side */
+/* Right side needs to swap order: Name then Flag then Seed */
+.round-16-right .team {
+    flex-direction: row-reverse;
+}
+
+.round-16-right .flag {
+    margin-right: 0;
+    margin-left: 8px;
+}
+
+.round-16-right .seed {
+    margin-right: 0;
+    margin-left: 5px;
+    text-align: right;
+}
+
+/* Connector Lines Logic - REMOVED */
+
+/* Layout Adjustments */
+.round-16-left {
+    justify-content: flex-start;
+    padding: 40px 0;
+    gap: 40px;
+}
+
+.round-4-left {
+    justify-content: flex-start;
+    padding: 40px 0;
+    gap: 40px;
+}
+
+.round-16-right {
+    justify-content: space-around;
+    padding: 40px 0;
+}
+
+.round-4-right {
+    justify-content: center;
+}
+
+/* Final Round */
+.round-final {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 40px 0;
+    gap: 40px;
+}
+
+.final-match {
+    margin-bottom: 0;
+}
+
+/* Group Label */
+.group-label {
+    text-align: center;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #000;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+}
+
+.flag-name {
+    flex-grow: 1;
+    width: auto;
+}
+
+.highlight-green {
+    background-color: #00ff00 !important;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .bracket-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .round {
+        min-height: auto;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        width: 100%;
+        border-bottom: 2px dashed #eee;
+        /* Visual separator between rounds */
+    }
+
+    .round:last-child {
+        border-bottom: none;
+    }
+
+    .round-title {
+        position: relative;
+        margin-bottom: 20px;
+        top: auto;
+    }
+
+    .round-16-left,
+    .round-4-left,
+    .round-final {
+        align-items: center;
+        width: 100%;
+    }
+
+    .match {
+        width: 100%;
+        max-width: 350px;
+        /* Prevent matches from getting too wide on tablets */
+    }
+}
